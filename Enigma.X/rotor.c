@@ -84,5 +84,15 @@ void connection_table_constructor(char i, char j){
         tab_connection[i-'A']=j;
         tab_connection[j-'A']=i;
     }
+}
 
+rotor* rotor_choice(int i){
+    switch(i){
+        case 1: return &rotor1; break;
+        case 2: return &rotor2; break;
+        case 3: return &rotor3; break;
+        case 4: return &rotor4; break;
+        case 5: return &rotor5; break;
+        default: return NULL;
+    }
 }
