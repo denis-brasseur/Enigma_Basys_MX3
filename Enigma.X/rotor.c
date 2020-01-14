@@ -21,18 +21,41 @@ rotor rotor5 = {.lettre_transform = {'V','Z','B','R','G','I','T','Y','U','P','S'
                 .lettre_move = 'A'};
 
 
+void light_value(char c){
+    led_global_extinction();
+    if(c&1) LED0(1);
+    if((c>>1)&1) LED1(1);
+    if((c>>2)&1) LED2(1);
+    if((c>>3)&1) LED3(1);
+    if((c>>4)&1) LED4(1);
+    if((c>>5)&1) LED5(1);
+    if((c>>6)&1) LED6(1);
+    if((c>>7)&1) LED7(1);
+}
+
+
 rotor_rep rotor_function(rotor *r, rotor_rep i){
+    led_initialisation();
+    led_global_extinction();
     rotor_rep o;
     /* étape 1, le rotor bouge s'il le doit */
     if(i.mov==1){
-        r->shift = ((r->shift+1)%26) + 'A';
+        r->shift = (r->shift+1);
+        if(r->shift > 'Z') r->shift = r->shift - 26;
     }
     /* étape 2, la bague extérieure fait le décalage */
-    o.c = ((i.c + (r->shift - 'A'))%26 + 'A');
+    o.c = i.c + (r->shift - 'A');
+    if(o.c > 'Z') o.c = o.c - 26;
+    
     /* étape 3, le cablage interne fait la substitution */
     o.c = r->lettre_transform[o.c -'A'];
+    
+    //if(o.c == 'M') LED0(1);
+    //else LED1(1);
     /* étape 3.b, le décalage de la bague extérieur réintervient, mais à l'envers */
-    o.c = ((o.c + ('A' - r->shift)) % 26) + 'A';
+    o.c = o.c + ('A' - r->shift);
+    if(o.c < 'A') o.c = o.c + 26;
+    light_value(r->shift);
     /* étape 4, si le mouvement du rotor entraîne celui à sa gauche on le note*/
     if((r->shift == ((r->lettre_move +1)%26)+ 'A') && i.mov==1){
         o.mov = 1;
