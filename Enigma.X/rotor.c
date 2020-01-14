@@ -21,6 +21,8 @@ rotor rotor5 = {.lettre_transform = {'V','Z','B','R','G','I','T','Y','U','P','S'
                 .lettre_move = 'A'};
 
 
+char tab_connection[26] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'}
+
 void light_value(char c){
     led_global_extinction();
     if(c&1) LED0(1);
@@ -38,25 +40,25 @@ rotor_rep rotor_function(rotor *r, rotor_rep i){
     led_initialisation();
     led_global_extinction();
     rotor_rep o;
-    /* étape 1, le rotor bouge s'il le doit */
+    /* ï¿½tape 1, le rotor bouge s'il le doit */
     if(i.mov==1){
         r->shift = (r->shift+1);
         if(r->shift > 'Z') r->shift = r->shift - 26;
     }
-    /* étape 2, la bague extérieure fait le décalage */
+    /* ï¿½tape 2, la bague extï¿½rieure fait le dï¿½calage */
     o.c = i.c + (r->shift - 'A');
     if(o.c > 'Z') o.c = o.c - 26;
     
-    /* étape 3, le cablage interne fait la substitution */
+    /* ï¿½tape 3, le cablage interne fait la substitution */
     o.c = r->lettre_transform[o.c -'A'];
     
     //if(o.c == 'M') LED0(1);
     //else LED1(1);
-    /* étape 3.b, le décalage de la bague extérieur réintervient, mais à l'envers */
+    /* ï¿½tape 3.b, le dï¿½calage de la bague extï¿½rieur rï¿½intervient, mais ï¿½ l'envers */
     o.c = o.c + ('A' - r->shift);
     if(o.c < 'A') o.c = o.c + 26;
     light_value(r->shift);
-    /* étape 4, si le mouvement du rotor entraîne celui à sa gauche on le note*/
+    /* ï¿½tape 4, si le mouvement du rotor entraï¿½ne celui ï¿½ sa gauche on le note*/
     if((r->shift == ((r->lettre_move +1)%26)+ 'A') && i.mov==1){
         o.mov = 1;
     }
@@ -73,4 +75,14 @@ char reflector_function(char i){
 
 char connection_table_function(char* connection_table, char i){
     return connection_table[i-'A'];
+}
+
+void connection_table_constructor(char i, char j){
+
+    if (tab_connection[i-'A']==i && tab_connection[j-'A']==j)
+    {
+        tab_connection[i-'A']=j;
+        tab_connection[j-'A']=i;
+    }
+
 }
