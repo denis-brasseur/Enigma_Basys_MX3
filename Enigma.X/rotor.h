@@ -26,6 +26,7 @@ char reflector_function(char i);
 char connection_table_function(char i);
 void connection_table_constructor(char i, char j);
 rotor* rotor_choice(int i);
+void set_initial_shift(rotor* r, char c);
 
 #endif /* ROTOR_H */
 

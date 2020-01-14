@@ -96,3 +96,7 @@ rotor* rotor_choice(int i){
         default: return NULL;
     }
 }
+
+void set_initial_shift(rotor* r, char c){
+    r->shift = c;
+}

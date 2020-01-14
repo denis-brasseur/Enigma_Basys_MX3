@@ -35,10 +35,10 @@ int main(int argc, char** argv) {
     
     char buf2[10] ="";
     rotor_rep buf = {'A',1};
-    rotor *r = rotor_choice(0);
+    rotor *r = rotor_choice(1);
     if(r==NULL) LCD_WriteStringAtPos("holla",0,0);
     else LCD_WriteStringAtPos("hallo",0,0);
-    r->shift = 'A';
+    set_initial_shift(r,'A');
     buf = rotor_function(r,buf); 
     LCD_WriteStringAtPos("hello",0,0);
     buf2[0] = buf.c;
