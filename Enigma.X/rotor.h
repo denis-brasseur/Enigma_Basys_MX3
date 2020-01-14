@@ -23,7 +23,7 @@ typedef struct adhoc rotor_rep;
 
 rotor_rep rotor_function(rotor *r, rotor_rep i);
 char reflector_function(char i);
-
+char connection_table_function(char* connection_table, char i);
 
 #endif /* ROTOR_H */
 

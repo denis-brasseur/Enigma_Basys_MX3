@@ -70,3 +70,7 @@ rotor_rep rotor_function(rotor *r, rotor_rep i){
 char reflector_function(char i){
     return reflector[i-'A'];
 }
+
+char connection_table_function(char* connection_table, char i){
+    return connection_table[i-'A'];
+}
