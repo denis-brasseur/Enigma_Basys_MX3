@@ -21,7 +21,7 @@ rotor rotor5 = {.lettre_transform = {'V','Z','B','R','G','I','T','Y','U','P','S'
                 .lettre_move = 'A'};
 
 
-char tab_connection[26] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'}
+char tab_connection[26] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
 
 void light_value(char c){
     led_global_extinction();
@@ -73,8 +73,8 @@ char reflector_function(char i){
     return reflector[i-'A'];
 }
 
-char connection_table_function(char* connection_table, char i){
-    return connection_table[i-'A'];
+char connection_table_function(char i){
+    return tab_connection[i-'A'];
 }
 
 void connection_table_constructor(char i, char j){
