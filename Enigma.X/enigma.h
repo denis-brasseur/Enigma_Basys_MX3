@@ -14,8 +14,10 @@ extern "C" {
 
 #include <xc.h>
 #include <sys/attribs.h>
-    
+  
 #include "rotor.h"
+
+char enigma_cifer(char i);
 
 
 #ifdef	__cplusplus
