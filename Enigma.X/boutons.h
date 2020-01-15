@@ -21,6 +21,7 @@ extern "C" {
     
     void buttons_initialisation();
     int read_button(char c);
+    char button_pressed(void);
 
 #ifdef	__cplusplus
 }

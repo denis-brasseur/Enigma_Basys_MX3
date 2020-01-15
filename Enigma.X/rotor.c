@@ -74,13 +74,15 @@ char connection_table_function(char i){
     return tab_connection[i-'A'];
 }
 
-void connection_table_constructor(char i, char j){
+int connection_table_constructor(char i, char j){
 
     if (tab_connection[i-'A']==i && tab_connection[j-'A']==j)
     {
         tab_connection[i-'A']=j;
         tab_connection[j-'A']=i;
+        return 0;
     }
+    return 1;
 }
 
 rotor* rotor_choice(int i){

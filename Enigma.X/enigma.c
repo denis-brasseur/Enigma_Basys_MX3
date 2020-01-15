@@ -31,8 +31,8 @@ char enigma_cipher(char i){               // i lettre à chiffrer
     R[1] = rotor_choice(2);
     R[2] = rotor_choice(3);
       
-    R[0]->shift = 'A';
-    R[1]->shift = 'A';
+    R[0]->shift = 'Q';
+    R[1]->shift = 'E';
     R[2]->shift = 'A';
     
     
@@ -143,23 +143,39 @@ void enigma_constructor(void){
     }
     
     /* etape 2 :  table de connections */
-    int cmp;
+    int cmp, flag=3;
     for(cmp=0; cmp<13; cmp++){
         char a,b;
-        LCD_DisplayClear();
-        sprintf(lcd_buffer,"lettre %d = ?",2*cmp+1);
-        LCD_WriteStringAtPos(lcd_buffer,0,0);
-        sprintf(lcd_buffer,"lettre %d = ?",2*cmp+2);
-        LCD_WriteStringAtPos(lcd_buffer,1,0);
-        while(!BUTTON_U);
-        a = _get_number() + 'A' -1;
-        sprintf(lcd_buffer,"lettre %d = %c",2*cmp+1,a);
-        LCD_WriteStringAtPos(lcd_buffer,0,0);
-        while(!BUTTON_D);
-        b = _get_number() + 'A' -1;
-        sprintf(lcd_buffer,"lettre %d = %c",2*cmp+2,b);
-        LCD_WriteStringAtPos(lcd_buffer,1,0);
+        if(flag==3){
+            LCD_DisplayClear();
+            sprintf(lcd_buffer,"lettre %d = ?",2*cmp+1);
+            LCD_WriteStringAtPos(lcd_buffer,0,0);
+            sprintf(lcd_buffer,"lettre %d = ?",2*cmp+2);
+            LCD_WriteStringAtPos(lcd_buffer,1,0);
+        }
+        char c=0;
+        while(c==0) c=button_pressed();
+        switch(c){
+            case 'U': a=_get_number() + 'A' -1; flag=1;
+            case 'D': b=_get_number() + 'A' -1; flag=2;
+            case 'C': if(a==0 || b==0) flag=3;
+            default: flag=0;
+        }
+        if(flag==1){
+            sprintf(lcd_buffer,"lettre %d = %c",2*cmp+1,a);
+            LCD_WriteStringAtPos(lcd_buffer,0,0);
+            cmp--;
+        }
+        if(flag==2){
+            sprintf(lcd_buffer,"lettre %d = %c",2*cmp+2,b);
+            LCD_WriteStringAtPos(lcd_buffer,1,0);
+            cmp--;
+        }
+        if(flag==3){
+            connection_table_constructor(a,b);
+        }
         DelayAprox10Us(5000);
-        connection_table_constructor(a,b);
     }
 }
+
+

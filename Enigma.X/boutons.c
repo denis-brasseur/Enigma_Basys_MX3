@@ -23,3 +23,12 @@ int read_button(char c){
         default : return -1;
     }
 }
+
+char pressed_button(void){
+    if(BUTTON_C) return 'C';
+    if(BUTTON_U) return 'U';
+    if(BUTTON_D) return 'D';
+    if(BUTTON_L) return 'L';
+    if(BUTTON_R) return 'R';
+    return 0;
+}
