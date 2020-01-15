@@ -27,31 +27,28 @@ void led_number(unsigned char val){
 char enigma_cipher(char i){               // i lettre à chiffrer
     
     //temporaire
-    led_initialisation();
-    led_global_extinction();
-    
-    //LED1(1);
     R[0] = rotor_choice(1);
     R[1] = rotor_choice(2);
     R[2] = rotor_choice(3);
-    
+      
     R[0]->shift = 'A';
     R[1]->shift = 'A';
     R[2]->shift = 'A';
     
     
-    
-    
+ 
+  
     char a = connection_table_function(i);   //passage par la table de connection
     rotor_rep buf = {a,1};
+    
     for(i=0; i<3; i++){
         buf = rotor_function (R[i], buf);    //passage par les N rotors
     }
-
+    
     buf.c = reflector_function(buf.c);       //passage sur le reflector
 
     for(i=2; i>=0; i--){
-        buf.c = inverse_rotor_function (R[i], buf.c);    //passage par les N rotors inverses
+        buf.c = inverse_rotor_function (R[i], buf.c);    //passage par les N rotors inverses;
     }
 
     a = connection_table_function(buf.c);  //repassage par la table de connection

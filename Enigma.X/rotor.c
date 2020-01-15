@@ -37,8 +37,6 @@ void light_value(char c){
 
 
 rotor_rep rotor_function(rotor *r, rotor_rep i){
-    led_initialisation();
-    led_global_extinction();
     rotor_rep o;
     /* etape 1, le rotor bouge s'il le doit */
     if(i.mov==1){
@@ -55,7 +53,7 @@ rotor_rep rotor_function(rotor *r, rotor_rep i){
     /* etape 3.b, le decalage de la bague exterieur reintervient, mais a l'envers */
     o.c = o.c + ('A' - r->shift);
     if(o.c < 'A') o.c = o.c + 26;
-    light_value(r->shift);
+    
     
     /* etape 4, si le mouvement du rotor entraine celui a sa gauche on le note*/
     if(((r->shift == (r->lettre_move +1)) && i.mov==1)||(r->shift=='A' && r->lettre_move=='Z') && i.mov==1){
@@ -102,7 +100,7 @@ void set_initial_shift(rotor* r, char c){
 
 char inverse_rotor_function(rotor* r, char i){
     /* etape 1 : decalage */
-    i = i + r->shift;
+    i = i + (r->shift - 'A');
     if(i > 'Z') i = i - 26;
     
     /* etape 2 : la substitution se fait en sens inverse */
@@ -111,7 +109,7 @@ char inverse_rotor_function(rotor* r, char i){
     i = 'A' + k;
     
     /* etape 3 : decalage inverse */
-    i = i - r->shift;
+    i = i - (r->shift - 'A');
     if(i < 'A') i = i + 26;
     return i;
 }

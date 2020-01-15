@@ -43,9 +43,9 @@ int get_number(void){
         +  (SWITCH7<<7);
 }
 int main(int argc, char** argv) {
-//    led_initialisation();
-//    led_global_extinction();
-//    LED1(1);
+    led_initialisation();
+    led_global_extinction();
+    LED1(1);
     
     LCD_Init();
     switch_initialisation();
