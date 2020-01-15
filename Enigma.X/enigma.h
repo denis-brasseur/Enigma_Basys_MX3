@@ -12,7 +12,10 @@
 extern "C" {
 #endif
 
-
+#include <xc.h>
+#include <sys/attribs.h>
+    
+#include "rotor.h"
 
 
 #ifdef	__cplusplus
