@@ -69,7 +69,7 @@ int _get_number(void){
 }
 
 void enigma_constructor(void){
-    char lcd_buffer[16] = "";
+    char lcd_buffer[17] = "";
     /* etape 0 : initialisations des dépendances*/
     LCD_Init();
     LCD_DisplayClear();
@@ -144,9 +144,10 @@ void enigma_constructor(void){
     
     /* etape 2 :  table de connections */
     int cmp, flag=3;
+    char a,b;
     for(cmp=0; cmp<13; cmp++){
-        char a,b;
         if(flag==3){
+            a=0, b=0;
             LCD_DisplayClear();
             sprintf(lcd_buffer,"lettre %d = ?",2*cmp+1);
             LCD_WriteStringAtPos(lcd_buffer,0,0);
@@ -156,11 +157,13 @@ void enigma_constructor(void){
         char c=0;
         while(c==0) c=button_pressed();
         switch(c){
-            case 'U': a=_get_number() + 'A' -1; flag=1;
-            case 'D': b=_get_number() + 'A' -1; flag=2;
-            case 'C': if(a==0 || b==0) flag=3;
+            case 'U': a=_get_number() + 'A' -1; flag=1; break;
+            case 'D': b=_get_number() + 'A' -1; flag=2; break;
+            case 'C': flag=(a!=0 && b!=0)?3:0; break;
+            case 'R': flag=3; continue;
             default: flag=0;
         }
+        if(flag==0) cmp--;
         if(flag==1){
             sprintf(lcd_buffer,"lettre %d = %c",2*cmp+1,a);
             LCD_WriteStringAtPos(lcd_buffer,0,0);
@@ -172,8 +175,40 @@ void enigma_constructor(void){
             cmp--;
         }
         if(flag==3){
-            connection_table_constructor(a,b);
+            if(connection_table_constructor(a,b)){
+                sprintf(lcd_buffer,"cette connection");
+                LCD_WriteStringAtPos(lcd_buffer,0,0);
+                sprintf(lcd_buffer,"est impossible");
+                LCD_WriteStringAtPos(lcd_buffer,1,0);
+                cmp--;
+            }
         }
+        DelayAprox10Us(5000);
+    }
+    
+    
+    /* etape 3 : positions intiales des rotors */
+    int i; char c;
+    for(i=0; i<3; i++){
+        sprintf(lcd_buffer,"Lettre initiale");
+        LCD_WriteStringAtPos(lcd_buffer,0,0);
+        if(i==0){
+            sprintf(lcd_buffer,"du Rotor D = ?");
+            LCD_WriteStringAtPos(lcd_buffer,1,0);
+        }
+        if(i==1){
+            sprintf(lcd_buffer,"du Rotor M = ?");
+            LCD_WriteStringAtPos(lcd_buffer,1,0);
+        }
+        if(i==2){
+            sprintf(lcd_buffer,"du Rotor G = ?");
+            LCD_WriteStringAtPos(lcd_buffer,1,0);
+        }
+        while(!BUTTON_C);
+        c = _get_number() + 'A' -1;
+        set_initial_shift(R[i],c);
+        sprintf(lcd_buffer,"%c",c);
+        LCD_WriteStringAtPos(lcd_buffer,1,13);
         DelayAprox10Us(5000);
     }
 }

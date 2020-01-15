@@ -43,28 +43,7 @@ int get_number(void){
         +  (SWITCH7<<7);
 }
 int main(int argc, char** argv) {
-    led_initialisation();
-    led_global_extinction();
-    LED1(1);
-    
-    LCD_Init();
-    switch_initialisation();
-    LCD_DisplayClear();
-    char lcd_buf[16] = "";
-    
-    sprintf(lcd_buf,"input = ?");
-    LCD_WriteStringAtPos(lcd_buf,0,0);
-    sprintf(lcd_buf,"output = ?");
-    LCD_WriteStringAtPos(lcd_buf,1,0);
-    
-    while(!BUTTON_C);
-    char c = get_number() -1 + 'A';
-    sprintf(lcd_buf,"input = %c",c);
-    LCD_WriteStringAtPos(lcd_buf,0,0);
-    
-    c = enigma_cipher(c);
-    sprintf(lcd_buf,"output = %c",c);
-    LCD_WriteStringAtPos(lcd_buf,1,0);
+    enigma_constructor();
     
     while(1);
     

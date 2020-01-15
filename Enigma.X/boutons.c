@@ -24,7 +24,7 @@ int read_button(char c){
     }
 }
 
-char pressed_button(void){
+char button_pressed(void){
     if(BUTTON_C) return 'C';
     if(BUTTON_U) return 'U';
     if(BUTTON_D) return 'D';
