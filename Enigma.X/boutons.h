@@ -19,7 +19,7 @@ extern "C" {
 #define BUTTON_U read_button('U')
 #define BUTTON_D read_button('D')
     
-    void button_initialisation();
+    void buttons_initialisation();
     int read_button(char c);
 
 #ifdef	__cplusplus

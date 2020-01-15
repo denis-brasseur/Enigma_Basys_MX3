@@ -14,11 +14,16 @@ extern "C" {
 
 #include <xc.h>
 #include <sys/attribs.h>
+#include <string.h>
   
 #include "rotor.h"
+#include "switches.h"
+#include "lcd.h"
+#include "led.h"
+#include "boutons.h"
 
-char enigma_cifer(char i);
-
+char enigma_cipher(char i);
+void enigma_constructor(void);
 
 #ifdef	__cplusplus
 }

@@ -2,7 +2,7 @@
 
 #include "boutons.h"
 
-void button_initialisation(void){
+void buttons_initialisation(void){
     TRISAbits.TRISA15 = 1; //D Button
     TRISBbits.TRISB0 = 1; //L Button
     ANSELBbits.ANSB0 = 0; //disable analog
@@ -14,7 +14,7 @@ void button_initialisation(void){
 }
 
 int read_button(char c){
-    switch(position){
+    switch(c){
         case 'C' : return PORTFbits.RF0; break;
         case 'L' : return PORTBbits.RB0; break;
         case 'R' : return PORTBbits.RB8; break;
