@@ -25,19 +25,7 @@ void led_number(unsigned char val){
 }
 
 char enigma_cipher(char i){               // i lettre à chiffrer
-    
-    //temporaire
-    R[0] = rotor_choice(1);
-    R[1] = rotor_choice(2);
-    R[2] = rotor_choice(3);
       
-    R[0]->shift = 'Q';
-    R[1]->shift = 'E';
-    R[2]->shift = 'A';
-    
-    
- 
-  
     char a = connection_table_function(i);   //passage par la table de connection
     rotor_rep buf = {a,1};
     

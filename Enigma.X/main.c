@@ -45,6 +45,21 @@ int get_number(void){
 int main(int argc, char** argv) {
     enigma_constructor();
     
+    char lcd_buffer[17]= "";
+    LCD_DisplayClear();
+    sprintf(lcd_buffer,"input = ?");
+    LCD_WriteStringAtPos(lcd_buffer,0,0);
+    sprintf(lcd_buffer,"output = ?");
+    LCD_WriteStringAtPos(lcd_buffer,1,0);
+    
+    char c;
+    while(!BUTTON_C);
+    c = get_number() + 'A' -1;
+    sprintf(lcd_buffer,"input = %c",c);
+    LCD_WriteStringAtPos(lcd_buffer,0,0);
+    c=enigma_cipher(c);
+    sprintf(lcd_buffer,"output = %c",c);
+    LCD_WriteStringAtPos(lcd_buffer,1,0);
     while(1);
     
     return (EXIT_SUCCESS);
