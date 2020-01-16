@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c UART.c lcd.c switches.c rotor.c led.c enigma.c boutons.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c UART.c lcd.c switches.c rotor.c led.c enigma.c boutons.c segments_display.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/UART.o ${OBJECTDIR}/lcd.o ${OBJECTDIR}/switches.o ${OBJECTDIR}/rotor.o ${OBJECTDIR}/led.o ${OBJECTDIR}/enigma.o ${OBJECTDIR}/boutons.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/UART.o.d ${OBJECTDIR}/lcd.o.d ${OBJECTDIR}/switches.o.d ${OBJECTDIR}/rotor.o.d ${OBJECTDIR}/led.o.d ${OBJECTDIR}/enigma.o.d ${OBJECTDIR}/boutons.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/UART.o ${OBJECTDIR}/lcd.o ${OBJECTDIR}/switches.o ${OBJECTDIR}/rotor.o ${OBJECTDIR}/led.o ${OBJECTDIR}/enigma.o ${OBJECTDIR}/boutons.o ${OBJECTDIR}/segments_display.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/UART.o.d ${OBJECTDIR}/lcd.o.d ${OBJECTDIR}/switches.o.d ${OBJECTDIR}/rotor.o.d ${OBJECTDIR}/led.o.d ${OBJECTDIR}/enigma.o.d ${OBJECTDIR}/boutons.o.d ${OBJECTDIR}/segments_display.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/UART.o ${OBJECTDIR}/lcd.o ${OBJECTDIR}/switches.o ${OBJECTDIR}/rotor.o ${OBJECTDIR}/led.o ${OBJECTDIR}/enigma.o ${OBJECTDIR}/boutons.o
+OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/UART.o ${OBJECTDIR}/lcd.o ${OBJECTDIR}/switches.o ${OBJECTDIR}/rotor.o ${OBJECTDIR}/led.o ${OBJECTDIR}/enigma.o ${OBJECTDIR}/boutons.o ${OBJECTDIR}/segments_display.o
 
 # Source Files
-SOURCEFILES=main.c UART.c lcd.c switches.c rotor.c led.c enigma.c boutons.c
+SOURCEFILES=main.c UART.c lcd.c switches.c rotor.c led.c enigma.c boutons.c segments_display.c
 
 
 
@@ -155,6 +155,12 @@ ${OBJECTDIR}/boutons.o: boutons.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/boutons.o 
 	@${FIXDEPS} "${OBJECTDIR}/boutons.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/boutons.o.d" -o ${OBJECTDIR}/boutons.o boutons.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
 	
+${OBJECTDIR}/segments_display.o: segments_display.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/segments_display.o.d 
+	@${RM} ${OBJECTDIR}/segments_display.o 
+	@${FIXDEPS} "${OBJECTDIR}/segments_display.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/segments_display.o.d" -o ${OBJECTDIR}/segments_display.o segments_display.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
+	
 else
 ${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
@@ -203,6 +209,12 @@ ${OBJECTDIR}/boutons.o: boutons.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/boutons.o.d 
 	@${RM} ${OBJECTDIR}/boutons.o 
 	@${FIXDEPS} "${OBJECTDIR}/boutons.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/boutons.o.d" -o ${OBJECTDIR}/boutons.o boutons.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
+	
+${OBJECTDIR}/segments_display.o: segments_display.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/segments_display.o.d 
+	@${RM} ${OBJECTDIR}/segments_display.o 
+	@${FIXDEPS} "${OBJECTDIR}/segments_display.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/segments_display.o.d" -o ${OBJECTDIR}/segments_display.o segments_display.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
 	
 endif
 
