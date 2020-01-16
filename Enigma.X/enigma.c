@@ -64,6 +64,8 @@ void enigma_constructor(void){
     switch_initialisation();
     led_initialisation();
     led_global_extinction();
+    rgb_initialisation();
+    rgb_extinction();
     buttons_initialisation();
     
     /* etape 1 : choisir les rotors*/
@@ -80,10 +82,52 @@ void enigma_constructor(void){
             LCD_WriteStringAtPos(lcd_buffer,0,0);
             sprintf(lcd_buffer,"pas disponible.");
             LCD_WriteStringAtPos(lcd_buffer,1,0);
+            
+            int i;
+            for (i=0; i<5;i++){
+            LED0(1);
+            LED1(1);    
+            LED2(1);       
+            LED3(1);       
+            LED4(1);       
+            LED5(1);       
+            LED6(1);       
+            LED7(1);   
+            light_red();
+            DelayAprox10Us(1000);
+            unput_red();
+            LED0(0);
+            LED1(0);    
+            LED2(0);       
+            LED3(0);       
+            LED4(0);       
+            LED5(0);       
+            LED6(0);       
+            LED7(0);
+            DelayAprox10Us(1000);
+            }
         }
         else{
             sprintf(lcd_buffer, "Rotor D = %d",get_number());
             LCD_WriteStringAtPos(lcd_buffer,0,0);
+            
+            int i;
+            for (i=0; i<3;i++){
+            DelayAprox10Us(1000);
+            light_red();
+            DelayAprox10Us(1000);
+            unput_red();
+            light_blue();
+            DelayAprox10Us(1000);
+            unput_blue();
+            light_green();
+            DelayAprox10Us(1000);
+            unput_green();
+            }
+            light_green();
+            DelayAprox10Us(5000);
+            unput_green();
+            
         }
         DelayAprox10Us(5000);
     }
@@ -101,10 +145,51 @@ void enigma_constructor(void){
             LCD_WriteStringAtPos(lcd_buffer,0,0);
             sprintf(lcd_buffer,"pas disponible.");
             LCD_WriteStringAtPos(lcd_buffer,1,0);
+            
+            int i;
+            for (i=0; i<5;i++){
+            LED0(1);
+            LED1(1);    
+            LED2(1);       
+            LED3(1);       
+            LED4(1);       
+            LED5(1);       
+            LED6(1);       
+            LED7(1);        
+            light_red();
+            DelayAprox10Us(1000);
+            unput_red();
+            LED0(0);
+            LED1(0);    
+            LED2(0);       
+            LED3(0);       
+            LED4(0);       
+            LED5(0);       
+            LED6(0);       
+            LED7(0);
+            DelayAprox10Us(1000);
+            }
         }
         else{
             sprintf(lcd_buffer, "Rotor M = %d",get_number());
             LCD_WriteStringAtPos(lcd_buffer,0,0);
+            int i;
+            for (i=0; i<3;i++){
+            DelayAprox10Us(1000);
+            light_red();
+            DelayAprox10Us(1000);
+            unput_red();
+            light_blue();
+            DelayAprox10Us(1000);
+            unput_blue();
+            light_green();
+            DelayAprox10Us(1000);
+            unput_green();
+            }
+            light_green();
+            DelayAprox10Us(5000);
+            unput_green();
+            
         }
         DelayAprox10Us(5000);
     }
@@ -122,10 +207,50 @@ void enigma_constructor(void){
             LCD_WriteStringAtPos(lcd_buffer,0,0);
             sprintf(lcd_buffer,"pas disponible.");
             LCD_WriteStringAtPos(lcd_buffer,1,0);
+            
+            int i;
+            for (i=0; i<5;i++){
+            LED0(1);
+            LED1(1);    
+            LED2(1);       
+            LED3(1);       
+            LED4(1);       
+            LED5(1);       
+            LED6(1);       
+            LED7(1);        
+            light_red();
+            DelayAprox10Us(1000);
+            unput_red();
+            LED0(0);
+            LED1(0);    
+            LED2(0);       
+            LED3(0);       
+            LED4(0);       
+            LED5(0);       
+            LED6(0);       
+            LED7(0);
+            DelayAprox10Us(1000);
+            }
         }
         else{
             sprintf(lcd_buffer, "Rotor G = %d",get_number());
             LCD_WriteStringAtPos(lcd_buffer,0,0);
+            int i;
+            for (i=0; i<3;i++){
+            DelayAprox10Us(1000);
+            light_red();
+            DelayAprox10Us(1000);
+            unput_red();
+            light_blue();
+            DelayAprox10Us(1000);
+            unput_blue();
+            light_green();
+            DelayAprox10Us(1000);
+            unput_green();
+            }
+            light_green();
+            DelayAprox10Us(5000);
+            unput_green();
         }
         DelayAprox10Us(5000);
     }
