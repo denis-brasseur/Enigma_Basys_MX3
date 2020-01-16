@@ -24,7 +24,7 @@ void led_number(unsigned char val){
     LED7(val%2);
 }
 
-char enigma_cipher(char i){               // i lettre à chiffrer
+char enigma_cipher(char i){               // i lettre Ã  chiffrer
       
     char a = connection_table_function(i);   //passage par la table de connection
     rotor_rep buf = {a,1};
@@ -58,7 +58,7 @@ int _get_number(void){
 
 void enigma_constructor(void){
     char lcd_buffer[17] = "";
-    /* etape 0 : initialisations des d�pendances*/
+    /* etape 0 : initialisations des dépendances*/
     LCD_Init();
     LCD_DisplayClear();
     switch_initialisation();
@@ -198,6 +198,7 @@ void enigma_constructor(void){
         sprintf(lcd_buffer,"%c",c);
         LCD_WriteStringAtPos(lcd_buffer,1,13);
         DelayAprox10Us(5000);
+        LCD_DisplayClear();
     }
 }
 
