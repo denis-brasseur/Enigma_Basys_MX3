@@ -23,7 +23,7 @@ void init_UART(void){
     U4BRG = 25;
 }
 
-static void write_char(char c){
+void write_char(char c){
         U4TXREG = c;
         if(U4STAbits.UTXBF) while(U4STAbits.TRMT != 1);
 }
@@ -42,7 +42,7 @@ void write_text(char* t, int size){
     }
 }
 
-static char read_char(void){
+char read_char(void){
     while(U4STAbits.URXDA != 1);
     char c = U4RXREG;
     return c;
